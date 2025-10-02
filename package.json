@@ -10,7 +10,8 @@
     "db:generate": "npx drizzle-kit generate",
     "db:migrate": "npx drizzle-kit migrate",
     "db:studio": "npx drizzle-kit studio",
-    "db:push": "npx drizzle-kit push"
+    "db:push": "npx drizzle-kit push",
+    "db:pull": "npx drizzle-kit pull"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",
