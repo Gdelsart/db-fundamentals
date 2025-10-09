@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, boolean, serial, varchar, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, boolean, serial, varchar, jsonb, unique } from "drizzle-orm/pg-core";
 
 export const tasks = pgTable("tasks", {
   id: serial("id").primaryKey(),
@@ -21,6 +21,14 @@ export const aiProjects = pgTable("ai_projects", {
   updatedAt: timestamp("updated_at").notNull().defaultNow()
 })
 
+export const gabesFavorites = pgTable("gabesFavorites", {
+  id: serial().primaryKey(),
+  videoGame: varchar({ length: 250 }).notNull(),
+  movie: varchar({ length: 100 }).notNull(),
+  architecture: varchar({ length: 250 }).notNull(),
+  tech: varchar({ length: 100 }).notNull(),
+})
+
 export interface StackItem {
   name: string;
   version?: string;
@@ -38,7 +46,6 @@ export type InsertAiProject = Omit<typeof aiProjects.$inferInsert, 'stack'> & {
   stack: StackItem[] | null;
 };
 
-
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: varchar("username", { length: 100 }).notNull().unique(),
@@ -50,3 +57,5 @@ export const users = pgTable("users", {
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
+
+export type gabesFavorites = typeof gabesFavorites.$inferSelect;
