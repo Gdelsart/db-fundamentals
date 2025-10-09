@@ -22,6 +22,8 @@ export default function DJPage() {
             <div key={user.id} className="border-2 border-gray-300 p-4 rounded-md">
                 <h2>{user.username}</h2>
                 <p>{user.email}</p>
+                <p>Password Hash: {user.passwordHash}</p>
+                <p>Updated At: {new Date(user.updatedAt).toLocaleDateString()}</p>
                 <p>Created At: {new Date(user.createdAt).toLocaleDateString()}</p>
             </div>
         ))}
