@@ -58,4 +58,19 @@ export const users = pgTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
+export const movies = pgTable("movies", {
+  id: serial("id").primaryKey(),
+  title: varchar("title", { length: 250 }).notNull(),
+  director: varchar("director", { length: 200 }),
+  genre: varchar("genre", { length: 100 }),
+  releaseYear: timestamp("release_year"),
+  rating: text("rating"), // G, PG, PG-13, R, etc.
+  imdbRating: text("imdb_rating"), // storing as text to handle decimal values
+  description: text("description"),
+  posterUrl: text("poster_url")
+})
+
+export type Movie = typeof movies.$inferSelect;
+export type InsertMovie = typeof movies.$inferInsert;
+
 export type gabesFavorites = typeof gabesFavorites.$inferSelect;
